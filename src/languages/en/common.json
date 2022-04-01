@@ -1,0 +1,21 @@
+{
+  "validations.required": "{{field}} is required",
+  "fields.email": "Email",
+  "validations.minLength": "Min length is {{length}}",
+  "fields.password": "Password",
+  "password": "password",
+  "email": "email",
+  "wrong.email": "Email doesn't exist",
+  "wrong.password": "Password is wrong",
+  "success.login": "Login successfully",
+  "fields.firstname": "Firstname",
+  "fields.lastname": "Lastname",
+  "firstname": "firstname",
+  "lastname": "lastname",
+  "login": "Login",
+  "register": "Register",
+  "create-account": "Create Account",
+  "have-account": "I Have Account",
+  "already.email": "Email has already existed!",
+  "verify.email": "Please check your email to verify account"
+}

@@ -1,0 +1,21 @@
+{
+  "validations.required": "{{field}} là bắt buộc",
+  "fields.email": "Email",
+  "validations.minLength": "Tối thiểu {{length}} ký tự",
+  "fields.password": "Mật khẩu",
+  "password": "mật khẩu",
+  "email": "email",
+  "wrong.email": "Email không tồn tại",
+  "wrong.password": "Mật khẩu không đúng",
+  "success.login": "Đăng nhập thành công",
+  "fields.firstname": "Họ",
+  "fields.lastname": "Tên",
+  "firstname": "họ",
+  "lastname": "tên",
+  "login": "Đăng nhập",
+  "register": "Đăng kí",
+  "create-account": "Tạo tài khoản",
+  "have-account": "Tôi có tài khoản",
+  "already.email": "Email đã tồn tại!",
+  "verify.email": "Hãy kiểm tra email của bạn để xác thực tài khoản"
+}
