@@ -23,7 +23,10 @@ class MyDocument extends Document {
               name="viewport"
               content="width=device-width, initial-scale=1"
             />
-            <link rel="icon" href="images/favicon.ico" />
+            <link
+              rel="icon"
+              href="https://cdn5.vectorstock.com/i/1000x1000/57/34/running-shoes-icon-fitness-simple-style-sneaker-vector-21885734.jpg"
+            />
             <link
               href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Open+Sans&display=swap"
               rel="stylesheet"

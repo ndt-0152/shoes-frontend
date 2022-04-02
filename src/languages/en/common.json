@@ -17,5 +17,8 @@
   "create-account": "Create Account",
   "have-account": "I Have Account",
   "already.email": "Email has already existed!",
-  "verify.email": "Please check your email to verify account"
+  "verify.email": "Please check your email to verify account",
+  "search": "search",
+  "profile": "Profile",
+  "logout": "Logout"
 }

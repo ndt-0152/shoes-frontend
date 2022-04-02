@@ -17,5 +17,8 @@
   "create-account": "Tạo tài khoản",
   "have-account": "Tôi có tài khoản",
   "already.email": "Email đã tồn tại!",
-  "verify.email": "Hãy kiểm tra email của bạn để xác thực tài khoản"
+  "verify.email": "Hãy kiểm tra email của bạn để xác thực tài khoản",
+  "search": "tìm kiếm",
+  "profile": "Trang cá nhân",
+  "logout": "Đăng xuất"
 }
