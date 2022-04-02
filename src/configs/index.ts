@@ -23,3 +23,16 @@ export const supportedLanguage = [
   { language: 'vietnamese', code: 'vi' },
   { language: 'english', code: 'en' },
 ];
+
+export const CONTACT_DEFAULT = '0123456789';
+export const EMAIL_DEFAULT = 'ndt@gmail.com';
+
+export const firebaseConfig = {
+  apiKey: 'AIzaSyBJduXu4s1ss8tjXHTfd30zpfWxl7RX04Q',
+  authDomain: 'shoes-images.firebaseapp.com',
+  projectId: 'shoes-images',
+  storageBucket: 'shoes-images.appspot.com',
+  messagingSenderId: '958531585073',
+  appId: '1:958531585073:web:742349f643e1062d778110',
+  measurementId: 'G-554ZS8T4HE',
+};
