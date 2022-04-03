@@ -1,8 +1,11 @@
 import Link from 'next/link';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { CONTACT_DEFAULT, EMAIL_DEFAULT } from '../configs';
+import { ROUTERS } from '../configs/navigators';
 import { setItemStorage } from '../libs/utils';
+import { profileSelector } from '../redux/auth/selectors';
 import { EnglishIcon, VietnamIcon } from './Icon';
 import * as S from './styled/styles';
 
@@ -10,7 +13,7 @@ export interface IHeader {}
 
 const Header: React.FC<IHeader> = React.memo(() => {
   const { i18n, t } = useTranslation();
-
+  const profile = useSelector(profileSelector);
   const currentLanguage = i18n.language;
 
   const handleChangeLanguage = (language: string) => {
@@ -93,11 +96,18 @@ const Header: React.FC<IHeader> = React.memo(() => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    Hi, ndt
+                    {t('hello')}, {`${profile?.firstName} ${profile?.lastName}`}
                   </button>
                   <div className="dropdown-menu">
                     <div className="dropdown-item">
-                      <Link href="/profile">
+                      <Link
+                        href={{
+                          pathname: ROUTERS.profile.path,
+                          query: {
+                            id: profile?.id,
+                          },
+                        }}
+                      >
                         <a>{t('profile')}</a>
                       </Link>
                     </div>

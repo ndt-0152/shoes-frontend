@@ -20,5 +20,12 @@
   "verify.email": "Please check your email to verify account",
   "search": "search",
   "profile": "Profile",
-  "logout": "Logout"
+  "logout": "Logout",
+  "field.province": "Province",
+  "field.district": "District",
+  "field.ward": "Ward",
+  "field.phone": "Phone number",
+  "field.update-profile": "Update Profile",
+  "hello": "Hi",
+  "update.profile": "Update Profile Successfully"
 }

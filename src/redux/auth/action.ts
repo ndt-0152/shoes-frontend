@@ -1,7 +1,7 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 
 import { apiSdk } from '../../libs/apis';
-import { IAuthLocal, IVerifyEmail } from '../../libs/apis/auth/types';
+import { IAuthLocal, IProfile, IVerifyEmail } from '../../libs/apis/auth/types';
 import { removeToken, setToken } from '../../libs/utils/';
 
 export const loginLocal = createAsyncThunk(
@@ -36,5 +36,18 @@ export const handleVerifyEmail = createAsyncThunk(
   'auth/handleVerifyEmail',
   async (data: IVerifyEmail) => {
     await apiSdk.authApis.verifyEmail(data);
+  },
+);
+
+export const getProfile = createAsyncThunk('auth/getProfile', async () => {
+  const profile = await apiSdk.authApis.profile();
+  return profile;
+});
+
+export const updateProfileAction = createAsyncThunk(
+  'auth/updateProfile',
+  async (info: IProfile) => {
+    const profile = await apiSdk.authApis.updateInfoProfile(info);
+    return profile;
   },
 );
