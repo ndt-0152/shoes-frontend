@@ -3,13 +3,14 @@ import axios, {
   AxiosInstance,
   AxiosRequestConfig,
   AxiosResponse,
-} from "axios";
-import { GetServerSidePropsContext } from "next";
+} from 'axios';
+import { GetServerSidePropsContext } from 'next';
 
-import { API_BASE_URL, COOKIE_KEYS, HTTP_STATUS } from "../../configs";
-import { ROUTERS } from "../../configs/navigators";
-import { getCookies, removeCookie } from "../utils";
-import { AuthApi } from "./auth";
+import { API_BASE_URL, COOKIE_KEYS, HTTP_STATUS } from '../../configs';
+import { ROUTERS } from '../../configs/navigators';
+import { getCookies, removeCookie } from '../utils';
+import { AddressApi } from './address';
+import { AuthApi } from './auth';
 
 class KingSportApi {
   private nextContext: GetServerSidePropsContext | null = null;
@@ -21,11 +22,11 @@ class KingSportApi {
     });
     this.instance.interceptors.request.use(
       this.onRequestFullfilled,
-      this.onRequestReject
+      this.onRequestReject,
     );
     this.instance.interceptors.response.use(
       this.onResponseFullfilled,
-      this.onResponseReject
+      this.onResponseReject,
     );
   }
 
@@ -46,7 +47,7 @@ class KingSportApi {
 
             const _cookies = getCookies(null);
             if (_cookies[COOKIE_KEYS.REFRESH_TOKEN]) {
-              const { data } = await this.instance.post("/auth/refresh-token", {
+              const { data } = await this.instance.post('/auth/refresh-token', {
                 refreshToken: _cookies[COOKIE_KEYS.REFRESH_TOKEN],
               });
               if (data.access_token) {
@@ -60,7 +61,7 @@ class KingSportApi {
           removeCookie(COOKIE_KEYS.REFRESH_TOKEN, this.nextContext);
           if (process.browser)
             window?.location.replace(
-              ROUTERS.login.path + "?redirect_uri=" + window?.location.pathname
+              ROUTERS.login.path + '?redirect_uri=' + window?.location.pathname,
             );
           break;
         }
@@ -78,14 +79,14 @@ class KingSportApi {
   };
 
   onRequestFullfilled = async (
-    config: AxiosRequestConfig
+    config: AxiosRequestConfig,
   ): Promise<AxiosRequestConfig> => {
     const cookies = getCookies(this.nextContext);
     if (cookies[COOKIE_KEYS.ACCESS_TOKEN]) {
       const bearerToken = `Bearer ${cookies[COOKIE_KEYS.ACCESS_TOKEN]}`;
       config.headers = {
         ...(config.headers ?? {}),
-        ["Authorization"]: bearerToken,
+        ['Authorization']: bearerToken,
       };
     }
 
@@ -102,7 +103,7 @@ class KingSportApi {
       }
       return error.response.data.message;
     }
-    return "An error has occurred, please try again";
+    return 'An error has occurred, please try again';
   };
 }
 const { instance, setApiContext } = new KingSportApi();
@@ -110,6 +111,7 @@ const { instance, setApiContext } = new KingSportApi();
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace apiSdk {
   export const authApis = new AuthApi(instance);
+  export const addressApis = new AddressApi(instance);
 }
 
 export { setApiContext };

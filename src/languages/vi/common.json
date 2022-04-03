@@ -20,5 +20,12 @@
   "verify.email": "Hãy kiểm tra email của bạn để xác thực tài khoản",
   "search": "tìm kiếm",
   "profile": "Trang cá nhân",
-  "logout": "Đăng xuất"
+  "logout": "Đăng xuất",
+  "field.province": "Tỉnh",
+  "field.district": "Quận/Huyện",
+  "field.ward": "Thị trấn/Xã",
+  "field.phone": "Số điện thoại",
+  "field.update-profile": "Cập nhật thông tin",
+  "hello": "Xin chào",
+  "update.profile": "Cập nhật thông tin thành công"
 }

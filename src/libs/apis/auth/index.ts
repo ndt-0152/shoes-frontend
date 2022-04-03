@@ -1,6 +1,6 @@
 import { AxiosInstance } from 'axios';
 
-import { IAuthenticated, IAuthLocal, IVerifyEmail } from './types';
+import { IAuthenticated, IAuthLocal, IProfile, IVerifyEmail } from './types';
 
 export class AuthApi {
   constructor(private axiosInstance: AxiosInstance) {}
@@ -36,5 +36,15 @@ export class AuthApi {
 
   async verifyEmail(data: IVerifyEmail): Promise<void> {
     await this.axiosInstance.post('/auth/verify-email', data);
+  }
+
+  async profile(): Promise<IProfile> {
+    const { data } = await this.axiosInstance.get('/auth/profile');
+    return data;
+  }
+
+  async updateInfoProfile(user: IProfile): Promise<any> {
+    const { data } = await this.axiosInstance.put('/auth/update-profile', user);
+    return data;
   }
 }

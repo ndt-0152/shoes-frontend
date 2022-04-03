@@ -1,13 +1,16 @@
 import React, { useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 import CameraIcon from '../../components/Icon/CameraIcon';
 import LayoutPages from '../../components/LayoutPages';
 import Orders from '../../components/Orders';
 import ProfileTabs from '../../components/ProfileTabs';
+import { profileSelector } from '../../redux/auth/selectors';
 
 export interface IProfileContainer {}
 
 export const ProfileContainer: React.FC<IProfileContainer> = React.memo(() => {
   const [image, setImage] = useState<File | undefined>();
+  const profile = useSelector(profileSelector);
   const cameraRef: React.MutableRefObject<any> = useRef();
   const onClickCamera = () => {
     cameraRef.current.click();
@@ -39,7 +42,7 @@ export const ProfileContainer: React.FC<IProfileContainer> = React.memo(() => {
                 </div>
                 <div className="author-card-details col-md-7">
                   <h5 className="author-card-name mb-2">
-                    <strong>ndt</strong>
+                    <strong>{`${profile?.firstName} ${profile?.lastName}`}</strong>
                   </h5>
                   <span className="author-card-position">
                     <>Joined yesterday</>
@@ -96,7 +99,7 @@ export const ProfileContainer: React.FC<IProfileContainer> = React.memo(() => {
               role="tabpanel"
               aria-labelledby="v-pills-home-tab"
             >
-              <ProfileTabs urlUpload={image} />
+              <ProfileTabs urlUpload={image} profile={profile} />
             </div>
             <div
               className="tab-pane fade"

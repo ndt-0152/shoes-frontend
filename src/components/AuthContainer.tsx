@@ -1,21 +1,14 @@
-import React, { useEffect } from "react";
-import {
-  useDispatch,
-  // useSelector
-} from "react-redux";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { COOKIE_KEYS } from "../configs";
-import { getCookies } from "../libs/utils";
-import {
-  authorized,
-  // getProfile
-} from "../redux/auth";
-// import { authSelector } from "../redux/auth/selectors";
-// import { fetchNotifications } from "../redux/notification";
+import { COOKIE_KEYS } from '../configs';
+import { getCookies } from '../libs/utils';
+import { authorized, getProfile } from '../redux/auth';
+import { authSelector } from '../redux/auth/selectors';
 
 export const AuthContainer = React.memo(function AuthContainer({ children }) {
   const dispatch = useDispatch();
-  //   const isAuthenticated = useSelector(authSelector);
+  const isAuthenticated = useSelector(authSelector);
 
   useEffect(() => {
     const cookies = getCookies(null);
@@ -24,12 +17,11 @@ export const AuthContainer = React.memo(function AuthContainer({ children }) {
     }
   }, [dispatch]);
 
-  //   useEffect(() => {
-  //     if (isAuthenticated) {
-  //   dispatch(getProfile());
-  //   dispatch(fetchNotifications());
-  //     }
-  //   }, [dispatch, isAuthenticated]);
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(getProfile());
+    }
+  }, [dispatch, isAuthenticated]);
 
   return <>{children}</>;
 });
