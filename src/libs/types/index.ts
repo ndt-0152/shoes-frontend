@@ -2,23 +2,23 @@ import {
   GetServerSideProps,
   GetServerSidePropsContext,
   GetServerSidePropsResult,
-} from "next";
-import { ParsedUrlQuery } from "querystring";
-import { AnyAction, Store } from "redux";
+} from 'next';
+import { ParsedUrlQuery } from 'querystring';
+import { AnyAction, Store } from 'redux';
 
-import { TRootState } from "../../redux";
+import { TRootState } from '../../redux';
 
 type TWithReduxServerSideCallback<S, P> = (
   context: GetServerSidePropsContext<ParsedUrlQuery>,
-  store: S
+  store: S,
 ) => Promise<GetServerSidePropsResult<P>>;
 
 export type TWithSSRFn<
   S extends Store<TRootState, AnyAction> = Store<TRootState, AnyAction>,
-  P extends Record<string, unknown> = Record<string, unknown>
+  P extends Record<string, unknown> = Record<string, unknown>,
 > = (
   cb: TWithReduxServerSideCallback<S, P>,
-  redirectWhenLoggedIn?: boolean
+  redirectWhenLoggedIn?: boolean,
 ) => GetServerSideProps<P, ParsedUrlQuery>;
 
 export interface IPaginationOutput<T> {
@@ -30,4 +30,15 @@ export interface IBaseQuery {
   limit?: number;
   offset?: number;
   search?: string;
+}
+
+export interface IVariantFilter {
+  id: string;
+  name: string;
+}
+
+export interface IProductQuery extends IBaseQuery {
+  size?: string;
+  color?: string;
+  gender?: string;
 }

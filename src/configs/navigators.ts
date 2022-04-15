@@ -1,4 +1,4 @@
-type TRouteName = 'login' | 'register' | 'home' | 'profile';
+type TRouteName = 'login' | 'register' | 'home' | 'profile' | 'product_detail';
 
 export const ROUTERS: Record<
   TRouteName,
@@ -20,6 +20,11 @@ export const ROUTERS: Record<
   profile: {
     title: 'page.profile.title',
     path: '/profile/[id]',
+    protect: true,
+  },
+  product_detail: {
+    title: 'page.product_detail.title',
+    path: '/product/[id]',
     protect: true,
   },
 };

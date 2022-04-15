@@ -11,6 +11,11 @@ import { ROUTERS } from '../../configs/navigators';
 import { getCookies, removeCookie } from '../utils';
 import { AddressApi } from './address';
 import { AuthApi } from './auth';
+import { ColorApis } from './colors';
+import { GenderApis } from './genders';
+import { ProductApis } from './products';
+import { SizeApis } from './sizes';
+import { SliderApi } from './sliders';
 
 class KingSportApi {
   private nextContext: GetServerSidePropsContext | null = null;
@@ -112,6 +117,11 @@ const { instance, setApiContext } = new KingSportApi();
 export namespace apiSdk {
   export const authApis = new AuthApi(instance);
   export const addressApis = new AddressApi(instance);
+  export const sliderApis = new SliderApi(instance);
+  export const colorApis = new ColorApis(instance);
+  export const sizeApis = new SizeApis(instance);
+  export const genderApis = new GenderApis(instance);
+  export const productApis = new ProductApis(instance);
 }
 
 export { setApiContext };

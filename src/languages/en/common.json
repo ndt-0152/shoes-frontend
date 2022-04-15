@@ -27,5 +27,8 @@
   "field.phone": "Phone number",
   "field.update-profile": "Update Profile",
   "hello": "Hi",
-  "update.profile": "Update Profile Successfully"
+  "update.profile": "Update Profile Successfully",
+  "gender": "Gender",
+  "colour": "Colour",
+  "size": "Size"
 }

@@ -27,5 +27,8 @@
   "field.phone": "Số điện thoại",
   "field.update-profile": "Cập nhật thông tin",
   "hello": "Xin chào",
-  "update.profile": "Cập nhật thông tin thành công"
+  "update.profile": "Cập nhật thông tin thành công",
+  "gender": "Giới tính",
+  "colour": "Màu sắc",
+  "size": "Kích cỡ"
 }
