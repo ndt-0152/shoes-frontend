@@ -36,3 +36,5 @@ export const firebaseConfig = {
   appId: '1:958531585073:web:742349f643e1062d778110',
   measurementId: 'G-554ZS8T4HE',
 };
+
+export const ITEMS_PER_PAGE = 9;

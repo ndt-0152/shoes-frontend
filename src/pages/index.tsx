@@ -1,13 +1,28 @@
 import type { NextPage } from 'next';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import LayoutPages from '../components/LayoutPages';
+import HomeContainer from '../containers/HomeContainer';
+import { fetchColors } from '../redux/color';
+import { fetchGenders } from '../redux/gender';
+import { getListProducts } from '../redux/product';
+import { fetchSizes } from '../redux/size';
+import { fetchSliders } from '../redux/slider';
 
 const Home: NextPage = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchSliders());
+    dispatch(fetchColors());
+    dispatch(fetchSizes());
+    dispatch(fetchGenders());
+    dispatch(getListProducts());
+  }, []);
+
   return (
-    <>
-      <Header />
-      <Footer />
-    </>
+    <LayoutPages hasFooter>
+      <HomeContainer />
+    </LayoutPages>
   );
 };
 
