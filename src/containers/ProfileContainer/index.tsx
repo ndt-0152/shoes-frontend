@@ -1,9 +1,11 @@
+import { getDownloadURL, ref, uploadBytesResumable } from '@firebase/storage';
 import React, { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import CameraIcon from '../../components/Icon/CameraIcon';
 import LayoutPages from '../../components/LayoutPages';
 import Orders from '../../components/Orders';
 import ProfileTabs from '../../components/ProfileTabs';
+import { storage } from '../../configs/firebase.config';
 import { profileSelector } from '../../redux/auth/selectors';
 
 export interface IProfileContainer {}
@@ -17,7 +19,28 @@ export const ProfileContainer: React.FC<IProfileContainer> = React.memo(() => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files?.[0]) setImage(e.target.files?.[0]);
+    // if (e.target.files?.[0]) setImage(e.target.files?.[0]);
+    // const handleButtonClick = () => {
+    // if (!images) return;
+    const storageRef = ref(storage, `/files/${e.target.files?.[0]?.name}`);
+    const uploadTask = uploadBytesResumable(
+      storageRef,
+      e.target.files?.[0] as File,
+    );
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const prog = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        // setProgress(prog);
+      },
+      (err) => console.log(err),
+      async () => {
+        const url = await getDownloadURL(uploadTask.snapshot.ref);
+        alert(url);
+        // setUrl(url);
+      },
+    );
+    // };
   };
 
   return (
