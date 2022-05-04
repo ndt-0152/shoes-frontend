@@ -9,7 +9,7 @@ export const DetailContainer: React.FC = React.memo(() => {
 
   return (
     <div className="container single-product">
-      <ProductInfomation />
+      <ProductInfomation product={detailProduct} />
       <RatingForm />
     </div>
   );

@@ -30,5 +30,14 @@
   "update.profile": "Update Profile Successfully",
   "gender": "Gender",
   "colour": "Colour",
-  "size": "Size"
+  "size": "Size",
+  "product.price": "Price",
+  "product.quantity": "Quantity",
+  "product.add-to-cart": "Add to cart",
+  "product.remain-quantity": "Remaining quantity",
+  "product.message.remain-quantity": "Please choose size and color to watch a remaining product",
+  "error.color": "Please choose a color that you want",
+  "error.size": "Please choose a size that you want",
+  "error.quantity-larger": "This product is not available",
+  "success.add-to-cart": "Add to cart has been successfully"
 }

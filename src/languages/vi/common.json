@@ -30,5 +30,14 @@
   "update.profile": "Cập nhật thông tin thành công",
   "gender": "Giới tính",
   "colour": "Màu sắc",
-  "size": "Kích cỡ"
+  "size": "Kích cỡ",
+  "product.price": "Giá tiền",
+  "product.quantity": "Số lượng",
+  "product.add-to-cart": "Thêm vào giỏ hàng",
+  "product.remain-quantity": "Số lượng còn lại",
+  "product.message.remain-quantity": "Hãy chọn kích cỡ và màu sắc để xem số lượng còn lại của sản phẩm",
+  "error.color": "Hãy chọn một màu sắc mà bạn muốn",
+  "error.size": "Hãy chọn một kích cỡ mà bạn muốn",
+  "error.quantity-larger": "Sản phẩm này đã hết hàng",
+  "success.add-to-cart": "Thêm vào giỏ hàng thành công"
 }
