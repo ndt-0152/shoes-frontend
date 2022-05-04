@@ -1,10 +1,11 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useTranslation } from 'react-i18next';
-import Rating from '../../components/Rating';
+import { useDispatch } from 'react-redux';
 import CustomSlider from '../../components/Slider';
 import { IProductWithVariants } from '../../libs/apis/products/types';
 import { moneyFormat } from '../../libs/utils/moneyFormat';
+import { createCartItem } from '../../redux/cart';
 import * as S from './styles';
 
 export interface IProductInfomation {
@@ -15,6 +16,7 @@ export const ProductInfomation: React.FC<IProductInfomation> = React.memo(
   ({ product }) => {
     const { t } = useTranslation();
     const alert = useAlert();
+    const dispatch = useDispatch();
 
     const [color, setColor] = useState<string | undefined>();
     const [size, setSize] = useState<string | undefined>();
@@ -52,11 +54,23 @@ export const ProductInfomation: React.FC<IProductInfomation> = React.memo(
     }, [color, size]);
 
     const handleAddToCart = useCallback(() => {
-      // if (!color) alert.show({ title: t('error.color') }, { type: 'error' });
-      // if (!size) alert.show({ title: t('error.size') }, { type: 'error' });
-      // if (quantity && quantity > remainQuantity)
-      //   alert.show({ title: t('error.quantity-larger') }, { type: 'error' });
-      // alert.show({ title: t('success.add-to-cart') }, { type: 'success' });
+      if (!color || !size || (quantity && quantity > remainQuantity))
+        alert.show(
+          {
+            title:
+              'You have to pick a size, a color, and the amount of quantity must be less than the remaining quantity',
+          },
+          { type: 'error' },
+        );
+      else {
+        const _item = product?.variants?.find(
+          (item) => item.color.name === color && item.size.name === size,
+        );
+
+        dispatch(createCartItem({ variantId: _item?._id || '', quantity }));
+
+        alert.show({ title: t('success.add-to-cart') }, { type: 'success' });
+      }
     }, [color, size, quantity, remainQuantity]);
 
     return (
@@ -167,10 +181,6 @@ export const ProductInfomation: React.FC<IProductInfomation> = React.memo(
                 <S.WrapButton onClick={handleAddToCart}>
                   {t('product.add-to-cart')}
                 </S.WrapButton>
-              </div>
-              <div className="flex-box d-flex justify-content-between align-items-center">
-                <h6>Reviews</h6>
-                <Rating value={3} text={`${2} reviews`} />
               </div>
             </div>
           </div>

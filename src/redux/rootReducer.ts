@@ -6,6 +6,8 @@ import colorReducer from './color';
 import genderReducer from './gender';
 import sizeReducer from './size';
 import productReducer from './product';
+import reviewReducer from './review';
+import cartReducer from './cart';
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -15,6 +17,8 @@ const rootReducer = combineReducers({
   gender: genderReducer,
   size: sizeReducer,
   product: productReducer,
+  review: reviewReducer,
+  cart: cartReducer,
 });
 
 export default rootReducer;
