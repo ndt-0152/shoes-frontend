@@ -9,6 +9,7 @@ import { AuthContainer } from '../components/AuthContainer';
 import { wrapper } from '../redux';
 import { Provider as AlertProvider, positions, transitions } from 'react-alert';
 import { NotificationTemplate } from '../components/Notifications';
+import GlobalEvent from '../containers/GlobalEvent';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const options = {
@@ -26,9 +27,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <I18nextProvider i18n={i18n}>
       <AuthContainer>
-        <AlertProvider template={NotificationTemplate as any} {...options}>
-          <Component {...pageProps} />
-        </AlertProvider>
+        <GlobalEvent>
+          <AlertProvider template={NotificationTemplate as any} {...options}>
+            <Component {...pageProps} />
+          </AlertProvider>
+        </GlobalEvent>
       </AuthContainer>
     </I18nextProvider>
   );

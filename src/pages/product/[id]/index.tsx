@@ -6,6 +6,7 @@ import LayoutPages from '../../../components/LayoutPages';
 import DetailContainer from '../../../containers/DetailContainer';
 import { getServerSideWithPublicRoute } from '../../../libs/hocs/getServerSideWithPublicRoute';
 import { getProductDetail } from '../../../redux/product';
+import { getAllReviewOnProduct } from '../../../redux/review';
 
 const ProductDetail: NextPage = () => {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const ProductDetail: NextPage = () => {
     dispatch(
       getProductDetail({ productId: String(id || ''), queries: undefined }),
     );
+    dispatch(getAllReviewOnProduct({ idProduct: String(id || '') }));
   }, []);
 
   return (

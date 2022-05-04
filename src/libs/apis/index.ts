@@ -11,9 +11,11 @@ import { ROUTERS } from '../../configs/navigators';
 import { getCookies, removeCookie } from '../utils';
 import { AddressApi } from './address';
 import { AuthApi } from './auth';
+import { CartApi } from './cart';
 import { ColorApis } from './colors';
 import { GenderApis } from './genders';
 import { ProductApis } from './products';
+import { ReviewApi } from './review';
 import { SizeApis } from './sizes';
 import { SliderApi } from './sliders';
 
@@ -122,6 +124,8 @@ export namespace apiSdk {
   export const sizeApis = new SizeApis(instance);
   export const genderApis = new GenderApis(instance);
   export const productApis = new ProductApis(instance);
+  export const reviewApis = new ReviewApi(instance);
+  export const cartApis = new CartApi(instance);
 }
 
 export { setApiContext };
