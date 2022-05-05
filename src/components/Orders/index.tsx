@@ -1,8 +1,24 @@
-import React from 'react';
+import dayjs from 'dayjs';
+import React, { useState } from 'react';
+import { IOrderLineOutput, IOrderOutput } from '../../libs/apis/order/types';
+import { moneyFormat } from '../../libs/utils/moneyFormat';
 
-export interface IOrders {}
+export interface IOrders {
+  orders: IOrderOutput[];
+}
 
-export const Orders: React.FC<IOrders> = React.memo(() => {
+export const Orders: React.FC<IOrders> = React.memo(({ orders }) => {
+  const [rowSelected, setRowSelected] = useState(false);
+  const [orderLine, setOrderLines] = useState<IOrderLineOutput[]>([]);
+
+  const handleClickRows = (id: string) => {
+    const _order = orders.find((item) => item.id === id);
+
+    setOrderLines(_order?.orderLines || []);
+
+    setRowSelected((rowSelected) => !rowSelected);
+  };
+
   return (
     <div className=" d-flex justify-content-center align-items-center flex-column">
       <div className="table-responsive">
@@ -16,26 +32,40 @@ export const Orders: React.FC<IOrders> = React.memo(() => {
             </tr>
           </thead>
           <tbody>
-            <tr className={'alert-success'}>
-              <td>
-                <a href={`/`} className="link">
-                  1
-                </a>
-              </td>
-              <td>Paid</td>
-              <td>Dec 12 2021</td>
-              <td>$234</td>
-            </tr>
-            <tr className={'alert-danger'}>
-              <td>
-                <a href={`/`} className="link">
-                  2
-                </a>
-              </td>
-              <td>Not Paid</td>
-              <td>Dec 12 2021</td>
-              <td>$34</td>
-            </tr>
+            {orders.map((order, idx) => (
+              <>
+                <tr
+                  key={idx}
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => handleClickRows(order.id)}
+                >
+                  <td>{idx + 1}</td>
+                  <td>{order.status}</td>
+                  <td>{dayjs(order.createdAt).format('DD/MM/YYYY')}</td>
+                  <td>{moneyFormat(order.totalMoney, '$')}</td>
+                </tr>
+                {rowSelected ? (
+                  <>
+                    {orderLine.map((line, idx) => (
+                      <tr key={idx}>
+                        <td>Name: {line.product.product.name}</td>
+                        <td>
+                          Image:
+                          <img
+                            src={line.product.product.image}
+                            alt=""
+                            width={50}
+                            height={50}
+                          />
+                        </td>
+                        <td>Quantity: {line.quantity}</td>
+                        <td>Price: {line.price}</td>
+                      </tr>
+                    ))}
+                  </>
+                ) : null}
+              </>
+            ))}
           </tbody>
         </table>
       </div>

@@ -7,10 +7,12 @@ import Orders from '../../components/Orders';
 import ProfileTabs from '../../components/ProfileTabs';
 import { storage } from '../../configs/firebase.config';
 import { profileSelector } from '../../redux/auth/selectors';
+import { allOrdersByStatusSelector } from '../../redux/order/selectors';
 
 export interface IProfileContainer {}
 
 export const ProfileContainer: React.FC<IProfileContainer> = React.memo(() => {
+  const orderList = useSelector(allOrdersByStatusSelector);
   const [image, setImage] = useState<File | undefined>();
   const profile = useSelector(profileSelector);
   const cameraRef: React.MutableRefObject<any> = useRef();
@@ -104,7 +106,7 @@ export const ProfileContainer: React.FC<IProfileContainer> = React.memo(() => {
                     aria-selected="false"
                   >
                     Orders List
-                    <span className="badge2">3</span>
+                    <span className="badge2">{orderList.total}</span>
                   </button>
                 </div>
               </div>
@@ -130,7 +132,7 @@ export const ProfileContainer: React.FC<IProfileContainer> = React.memo(() => {
               role="tabpanel"
               aria-labelledby="v-pills-profile-tab"
             >
-              <Orders />
+              <Orders orders={orderList.items} />
             </div>
           </div>
         </div>

@@ -8,6 +8,7 @@ import sizeReducer from './size';
 import productReducer from './product';
 import reviewReducer from './review';
 import cartReducer from './cart';
+import orderReducer from './order';
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   product: productReducer,
   review: reviewReducer,
   cart: cartReducer,
+  order: orderReducer,
 });
 
 export default rootReducer;

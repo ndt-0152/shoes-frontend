@@ -196,7 +196,7 @@ export const CartContainer: React.FC = () => {
             </Link>
             <div className="col-md-6 d-flex justify-content-md-end mt-3 mt-md-0">
               <button>
-                <Link href="/shipping">
+                <Link href={ROUTERS.checkout.path}>
                   <a className="text-white">Checkout</a>
                 </Link>
               </button>

@@ -14,6 +14,7 @@ import { AuthApi } from './auth';
 import { CartApi } from './cart';
 import { ColorApis } from './colors';
 import { GenderApis } from './genders';
+import { OrderApi } from './order';
 import { ProductApis } from './products';
 import { ReviewApi } from './review';
 import { SizeApis } from './sizes';
@@ -126,6 +127,7 @@ export namespace apiSdk {
   export const productApis = new ProductApis(instance);
   export const reviewApis = new ReviewApi(instance);
   export const cartApis = new CartApi(instance);
+  export const orderApis = new OrderApi(instance);
 }
 
 export { setApiContext };

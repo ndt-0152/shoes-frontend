@@ -4,7 +4,9 @@ type TRouteName =
   | 'home'
   | 'profile'
   | 'product_detail'
-  | 'cart';
+  | 'cart'
+  | 'checkout'
+  | 'payment';
 
 export const ROUTERS: Record<
   TRouteName,
@@ -36,6 +38,16 @@ export const ROUTERS: Record<
   cart: {
     title: 'page.cart.title',
     path: '/cart',
+    protect: true,
+  },
+  checkout: {
+    title: 'page.checkout.title',
+    path: '/checkout',
+    protect: true,
+  },
+  payment: {
+    title: 'page.payment.title',
+    path: '/payment',
     protect: true,
   },
 };
