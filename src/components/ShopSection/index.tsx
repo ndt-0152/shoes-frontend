@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { ROUTERS } from '../../configs/navigators';
 import { IProduct } from '../../libs/apis/products/types';
 import { IVariantFilter } from '../../libs/types';
@@ -76,7 +76,17 @@ export const ShopSection: React.FC<IShopSection> = React.memo(
                               <Link href="">{product.name}</Link>
                             </p>
 
-                            <Rating value={3} text={`${2} reviews`} />
+                            <Rating
+                              value={
+                                product.reviews.length
+                                  ? product.reviews.reduce(
+                                      (a, c) => a + c.rating,
+                                      0,
+                                    ) / product.reviews.length
+                                  : 0
+                              }
+                              text={`${product.reviews.length} reviews`}
+                            />
                             <h3>{moneyFormat(product.default_price, '$')}</h3>
                           </div>
                         </div>

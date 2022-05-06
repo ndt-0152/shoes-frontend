@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import React from 'react';
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { CONTACT_DEFAULT, EMAIL_DEFAULT } from '../configs';
@@ -9,16 +10,28 @@ import { profileSelector } from '../redux/auth/selectors';
 import { EnglishIcon, VietnamIcon } from './Icon';
 import * as S from './styled/styles';
 
-export interface IHeader {}
+export interface IHeader {
+  getSearch?: (value?: string) => void;
+}
 
-const Header: React.FC<IHeader> = React.memo(() => {
+const Header: React.FC<IHeader> = React.memo(({ getSearch }) => {
   const { i18n, t } = useTranslation();
   const profile = useSelector(profileSelector);
   const currentLanguage = i18n.language;
+  const [search, setSearch] = useState<undefined | string>();
+
+  const handleInputSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
 
   const handleChangeLanguage = (language: string) => {
     i18n.changeLanguage(language);
     setItemStorage('language', language);
+  };
+
+  const handleSearch = (e: any) => {
+    e.preventDefault();
+    getSearch?.(search);
   };
 
   const active = (language: string) => (currentLanguage === language ? 1 : 0.5);
@@ -81,8 +94,14 @@ const Header: React.FC<IHeader> = React.memo(() => {
                     type="search"
                     className="form-control rounded search"
                     placeholder={t('search')}
+                    value={search}
+                    onChange={handleInputSearch}
                   />
-                  <button type="submit" className="search-button">
+                  <button
+                    type="submit"
+                    className="search-button"
+                    onClick={(e) => handleSearch(e)}
+                  >
                     {t('search')}
                   </button>
                 </form>

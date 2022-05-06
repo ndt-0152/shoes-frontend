@@ -4,4 +4,5 @@ import { IPaginationOutput } from '../../libs/types';
 export interface IProductState {
   products?: IPaginationOutput<IProduct>;
   product?: IProductWithVariants;
+  bestProducts?: IPaginationOutput<IProduct>;
 }

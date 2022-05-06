@@ -14,6 +14,15 @@ export class ProductApis {
     return data;
   }
 
+  async getListBestProducts(
+    queries?: IProductQuery,
+  ): Promise<IPaginationOutput<IProduct>> {
+    const { data } = await this.axiosInstance.get('/order-line/best-saler', {
+      params: { ...queries },
+    });
+    return data;
+  }
+
   async productDetail(
     queries?: IProductQuery,
     productId?: string,
