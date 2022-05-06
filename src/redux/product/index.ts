@@ -18,6 +18,14 @@ export const getListProducts = createAsyncThunk(
   },
 );
 
+export const getBestProducts = createAsyncThunk(
+  'getBestProducts',
+  async (queries?: IProductQuery) => {
+    const products = apiSdk.productApis.getListBestProducts(queries);
+    return products;
+  },
+);
+
 export const getProductDetail = createAsyncThunk(
   'getProductDetail',
   async ({ queries, productId }: TProductVariant) => {
@@ -35,6 +43,10 @@ export const productSlice = createGenericSlice({
   extraReducers: (builder) => {
     builder.addCase(getListProducts.fulfilled, (state, action) => {
       state.products = action.payload;
+    });
+
+    builder.addCase(getBestProducts.fulfilled, (state, action) => {
+      state.bestProducts = action.payload;
     });
 
     builder.addCase(getProductDetail.fulfilled, (state, action) => {

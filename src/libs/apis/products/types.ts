@@ -6,6 +6,7 @@ export interface IProduct {
   image: string;
   description: string;
   default_price: number;
+  reviews: IReview[];
 }
 
 export interface IOutputVariant {
@@ -16,7 +17,12 @@ export interface IOutputVariant {
   images: string[];
 }
 
+interface IReview {
+  rating: number;
+}
+
 export interface IProductWithVariants extends IProduct {
   gender: IVariantFilter;
   variants: IOutputVariant[];
+  reviews: IReview[];
 }

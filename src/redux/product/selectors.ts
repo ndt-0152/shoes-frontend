@@ -10,3 +10,8 @@ export const productSelector = (
 export const productDetailSelectors = (
   state: TRootState,
 ): IProductWithVariants | undefined => state.product.product;
+
+export const bestProductsSelector = (
+  state: TRootState,
+): IPaginationOutput<IProduct> =>
+  state.product.bestProducts || { items: [], total: 0 };
