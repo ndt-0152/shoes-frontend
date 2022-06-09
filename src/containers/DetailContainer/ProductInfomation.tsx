@@ -67,7 +67,7 @@ export const ProductInfomation: React.FC<IProductInfomation> = React.memo(
           (item) => item.color.name === color && item.size.name === size,
         );
 
-        dispatch(createCartItem({ variantId: _item?._id || '', quantity }));
+        dispatch(createCartItem({ variantId: _item?.id || '', quantity }));
 
         alert.show({ title: t('success.add-to-cart') }, { type: 'success' });
       }

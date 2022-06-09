@@ -10,7 +10,7 @@ export interface IProduct {
 }
 
 export interface IOutputVariant {
-  _id: string;
+  id: string;
   color: IVariantFilter;
   size: IVariantFilter;
   quantity: number;

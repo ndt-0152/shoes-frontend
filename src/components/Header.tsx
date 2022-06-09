@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -7,6 +6,7 @@ import { CONTACT_DEFAULT, EMAIL_DEFAULT } from '../configs';
 import { ROUTERS } from '../configs/navigators';
 import { setItemStorage } from '../libs/utils';
 import { profileSelector } from '../redux/auth/selectors';
+import { allCart } from '../redux/cart/selectors';
 import { EnglishIcon, VietnamIcon } from './Icon';
 import * as S from './styled/styles';
 
@@ -19,6 +19,7 @@ const Header: React.FC<IHeader> = React.memo(({ getSearch }) => {
   const profile = useSelector(profileSelector);
   const currentLanguage = i18n.language;
   const [search, setSearch] = useState<undefined | string>();
+  const allCartSelector = useSelector(allCart);
 
   const handleInputSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -141,7 +142,9 @@ const Header: React.FC<IHeader> = React.memo(({ getSearch }) => {
                 <Link href="/cart">
                   <a>
                     <i className="fas fa-shopping-bag"></i>
-                    <span className="badge">4</span>
+                    {allCartSelector.total ? (
+                      <span className="badge">{allCartSelector.total}</span>
+                    ) : null}
                   </a>
                 </Link>
               </div>
